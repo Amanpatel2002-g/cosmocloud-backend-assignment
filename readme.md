@@ -4,7 +4,7 @@ This document provides an overview, setup instructions, and API documentation fo
 
 ## Overview
 
-CosmoCloud Backend Assignment is a FastAPI-based backend application that serves as the backend for the CosmoCloud platform. It provides various endpoints to manage user data.
+CosmoCloud Backend Assignment is a FastAPI-based backend application that serves as the backend for the CosmoCloud platform. It provides various endpoints to manage student data.
 
 ### Project Structure
 
@@ -18,11 +18,11 @@ CosmoCloud Backend Assignment is a FastAPI-based backend application that serves
 │   │   ├── constants.py
 │   │   └── settings.py
 │   ├── models
-│   │   └── user_models.py
+│   │   └── student_models.py
 │   ├── services
-│   │   └── user_services.py
+│   │   └── student_services.py
 │   ├── repository
-│   │   └── user_repository.py
+│   │   └── student_repository.py
 │   ├── main.py
 │   └── .env
 └── requirements.txt
@@ -31,9 +31,9 @@ CosmoCloud Backend Assignment is a FastAPI-based backend application that serves
 - `app`: Contains the main application logic.
 - `api`: Contains API routers for handling HTTP requests.
 - `config`: Contains configuration files, including settings and constants.
-- `models`: Contains data models for users.
-- `services`: Contains business logic services for users.
-- `repository`: Contains database repository functions for users.
+- `models`: Contains data models for students.
+- `services`: Contains business logic services for students.
+- `repository`: Contains database repository functions for students.
 - `main.py`: Entry point for the FastAPI application.
 - `.env`: Environment variables configuration file.
 - `requirements.txt`: File containing required Python dependencies.
@@ -97,14 +97,20 @@ pip install -r requirements.txt
 
 ### Step 6: Set Environment Variables
 
-Create a `.env` file in the project root directory and set the environment variables:
+Create a `.env` file in the project root directory by copying the contents from `.env.example` file:
+
+```plaintext
+cp .env.example .env
+```
+
+Then, open the `.env` file and update the values of environment variables as per your local environment. Make sure to set the MongoDB URI and database name accordingly:
 
 ```plaintext
 MONGODB_URI=mongodb://localhost:27017/
 MONGODB_DB_NAME=cosmocloud_db
 ```
 
-Replace the MongoDB URI and database name with your local MongoDB configuration.
+Replace the MongoDB URI and database name with your local MongoDB configuration. Ensure that sensitive information such as passwords and secret keys are kept confidential and not shared publicly.
 
 ### Step 7: Run the Application
 
@@ -120,21 +126,21 @@ The application will start running on `http://localhost:8000` by default.
 
 The following table summarizes the available API endpoints and their functionalities:
 
-| Endpoint          | Method | Description                                 |
-|-------------------|--------|---------------------------------------------|
-| `/users`          | GET    | Get a list of all users.                    |
-| `/users/{user_id}`| GET    | Get user details by user ID.                |
-| `/users`          | POST   | Create a new user.                          |
-| `/users/{user_id}`| PUT    | Update user details by user ID.             |
-| `/users/{user_id}`| DELETE | Delete user by user ID.                     |
+| Endpoint             | Method | Description                                    |
+|----------------------|--------|------------------------------------------------|
+| `/students`          | GET    | Get a list of all students.                   |
+| `/students/{student_id}`| GET  | Get student details by student ID.            |
+| `/students`          | POST   | Create a new student.                         |
+| `/students/{student_id}`| PUT | Update student details by student ID.          |
+| `/students/{student_id}`| DELETE | Delete student by student ID.                 |
 
 Detailed descriptions of each endpoint:
 
-- **GET `/users`**: Retrieves a list of all users stored in the database.
-- **GET `/users/{user_id}`**: Retrieves the details of a specific user identified by the user ID.
-- **POST `/users`**: Creates a new user with the provided user data.
-- **PUT `/users/{user_id}`**: Updates the details of a user identified by the user ID with the provided data.
-- **DELETE `/users/{user_id}`**: Deletes the user identified by the user ID from the database.
+- **GET `/students`**: Retrieves a list of all students stored in the database.
+- **GET `/students/{student_id}`**: Retrieves the details of a specific student identified by the student ID.
+- **POST `/students`**: Creates a new student with the provided student data.
+- **PUT `/students/{student_id}`**: Updates the details of a student identified by the student ID with the provided data.
+- **DELETE `/students/{student_id}`**: Deletes the student identified by the student ID from the database.
 
 ---
 
