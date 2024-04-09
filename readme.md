@@ -1,14 +1,10 @@
-Certainly! Below is a sample documentation for the project, including instructions on how to set up the project locally, create a virtual environment, and install the required dependencies from the `requirements.txt` file:
+# CosmoCloud Backend Assignment Documentation
 
----
-
-# Student Management System Documentation
-
-This document provides an overview and instructions for setting up the Student Management System project locally.
+This document provides an overview, setup instructions, and API documentation for the CosmoCloud Backend Assignment project.
 
 ## Overview
 
-The Student Management System is a FastAPI-based application that allows users to perform CRUD (Create, Read, Update, Delete) operations on student records. It uses MongoDB as the database to store student information.
+CosmoCloud Backend Assignment is a FastAPI-based backend application that serves as the backend for the CosmoCloud platform. It provides various endpoints to manage user data.
 
 ### Project Structure
 
@@ -19,26 +15,25 @@ The Student Management System is a FastAPI-based application that allows users t
 │   │   └── routers.py
 │   ├── config
 │   │   ├── __init__.py
-│   │   ├── settings.py
-│   ├── db
-│   │   ├── __init__.py
-│   │   └── repository.py
+│   │   ├── constants.py
+│   │   └── settings.py
 │   ├── models
-|   |   |-- studentmodel
-│   ├── services.py
-│   └── utils.py
-├── main.py
-├── .env
+│   │   └── user_models.py
+│   ├── services
+│   │   └── user_services.py
+│   ├── repository
+│   │   └── user_repository.py
+│   ├── main.py
+│   └── .env
 └── requirements.txt
 ```
 
 - `app`: Contains the main application logic.
 - `api`: Contains API routers for handling HTTP requests.
 - `config`: Contains configuration files, including settings and constants.
-- `db`: Contains files related to database operations.
-- `models.py`: Contains data models.
-- `services.py`: Contains business logic services.
-- `utils.py`: Contains utility functions.
+- `models`: Contains data models for users.
+- `services`: Contains business logic services for users.
+- `repository`: Contains database repository functions for users.
 - `main.py`: Entry point for the FastAPI application.
 - `.env`: Environment variables configuration file.
 - `requirements.txt`: File containing required Python dependencies.
@@ -57,7 +52,7 @@ Follow the steps below to set up the project locally:
 Clone the project repository to your local machine using Git:
 
 ```bash
-git clone https://github.com/your-username/student-management-system.git
+git clone https://github.com/your-username/cosmocloud-backend-assignment.git
 ```
 
 ### Step 2: Navigate to the Project Directory
@@ -65,7 +60,7 @@ git clone https://github.com/your-username/student-management-system.git
 Navigate to the project directory:
 
 ```bash
-cd student-management-system
+cd cosmocloud-backend-assignment
 ```
 
 ### Step 3: Create a Virtual Environment
@@ -106,7 +101,7 @@ Create a `.env` file in the project root directory and set the environment varia
 
 ```plaintext
 MONGODB_URI=mongodb://localhost:27017/
-MONGODB_DB_NAME=student_db
+MONGODB_DB_NAME=cosmocloud_db
 ```
 
 Replace the MongoDB URI and database name with your local MongoDB configuration.
@@ -121,10 +116,26 @@ uvicorn main:app --reload
 
 The application will start running on `http://localhost:8000` by default.
 
-## Usage
+## API Documentation
 
-You can now access the API endpoints using an API client like Postman or cURL. Refer to the API documentation for details on available endpoints and usage.
+The following table summarizes the available API endpoints and their functionalities:
+
+| Endpoint          | Method | Description                                 |
+|-------------------|--------|---------------------------------------------|
+| `/users`          | GET    | Get a list of all users.                    |
+| `/users/{user_id}`| GET    | Get user details by user ID.                |
+| `/users`          | POST   | Create a new user.                          |
+| `/users/{user_id}`| PUT    | Update user details by user ID.             |
+| `/users/{user_id}`| DELETE | Delete user by user ID.                     |
+
+Detailed descriptions of each endpoint:
+
+- **GET `/users`**: Retrieves a list of all users stored in the database.
+- **GET `/users/{user_id}`**: Retrieves the details of a specific user identified by the user ID.
+- **POST `/users`**: Creates a new user with the provided user data.
+- **PUT `/users/{user_id}`**: Updates the details of a user identified by the user ID with the provided data.
+- **DELETE `/users/{user_id}`**: Deletes the user identified by the user ID from the database.
 
 ---
 
-This documentation provides an overview of the Student Management System project and instructions for setting it up locally. Feel free to customize it according to your project's specific requirements.
+This documentation provides an overview of the CosmoCloud Backend Assignment project, setup instructions, and API documentation. Customize it as needed for your project.
